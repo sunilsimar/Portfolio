@@ -8,19 +8,16 @@ import NavBar from "./components/NavBar";
 import "./App.css";
 import "./styles/Global.css";
 import "rsuite/dist/styles/rsuite-default.css";
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 function App() {
 
   useEffect(() => {
-  const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
-  if (trackingId) {
-    ReactGA.initialize(trackingId);
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  } else {
-    console.error('Google Analytics tracking ID is not defined');
-  }
-}, []);
+    ReactGA.initialize(process.env.REACT_APP_GA_MEASUREMENT_ID);
+    // ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.send('pageview')
+  }, []);
+
 
 
   return (
