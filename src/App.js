@@ -13,9 +13,14 @@ import ReactGA from 'react-ga';
 function App() {
 
   useEffect(() => {
-    ReactGA.initialize(process.env.React_APP_GA_TRACKING_ID);
+  const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
+  if (trackingId) {
+    ReactGA.initialize(trackingId);
     ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+  } else {
+    console.error('Google Analytics tracking ID is not defined');
+  }
+}, []);
 
 
   return (
