@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect}from "react";
 import Intro from "./components/Intro";
 import Experience from "./components/Experience";
 import About from "./components/About";
@@ -8,8 +8,16 @@ import NavBar from "./components/NavBar";
 import "./App.css";
 import "./styles/Global.css";
 import "rsuite/dist/styles/rsuite-default.css";
+import ReactGA from 'react-ga';
 
 function App() {
+
+  useEffect(() => {
+    ReactGA.initialize(process.env.React_APP_GA_TRACKING_ID);
+    ReactGA.send('pageview');
+  }, []);
+
+
   return (
     <div className="App">
       <NavBar></NavBar>
